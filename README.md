@@ -27,15 +27,28 @@ Este script elimina automáticamente el heading de tus archivos en C, ayudándot
     ```bash
     cd sh_utils_C42
     ```
-3. **Ejecuta los Scripts**:
-    - Para quitar el heading:
+3. **Dar permisos de ejecucion a los Scripts**
+    ```bash
+    chmod +x *.sh
+    ```
+4. **Ejecuta los Scripts**:
+     - Para quitar el heading:
         ```bash
-        ./remove_heading.sh <ruta/archivo.c>
+		./remove_heading.sh <ruta_archivo.c>
         ```
-    - Para cambiar el nombre de las variables:
+     - Para hacer un buscar y remplazar de una palabra de tu archivo:
         ```bash
-        ./rename_variable.sh <ruta/archivo.c> variable_old variable_new
+		./search_and_replace.sh <ruta_archivo.c> <search> <replace>
         ```
+     - Para la generación del archivo .h y añadir los includes a tus ficheros .c:
+        ```bash
+		./generate_includers.sh <nombre_del_archivo_h_a_generar> <directorio_srcs>
+        ```
+     - Para descomentar tus ficheros .c:
+        ```bash
+		./uncoment_file.sh <ruta_archivo.c>
+        ```
+		> Nota: Solo funciona con los comentarios de una línea
 
 ## Contribuye y Mejora
 
