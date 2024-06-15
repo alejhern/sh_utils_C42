@@ -42,9 +42,31 @@ if [ -f "$FINAL_H_PATH" ]; then
 fi
 
 # Función para extraer las declaraciones de funciones de un archivo .c
+
 extract_function_declarations() {
     local c_file="$1"
+    grep -P '^\s*\w+\s*\*\s*\w+\s*\([^)]*\)' $c_file | awk '{
+        type = $1
+        name = $2
+        gsub(/\(.*/, "", name)
+        args = substr($0, index($0, "("))
+        print type "\t" name args ";"
+    }'
     grep -P '^\w+\s+\w+\(.*\)' "$c_file" | awk '{
+        type = $1
+        name = $2
+        gsub(/\(.*/, "", name)
+        args = substr($0, index($0, "("))
+        print type "\t" name args ";"
+    }'
+    grep -P '^\s*static\s+\w+\s+\w+\(.*\)' "$c_file" | awk '{
+        type = $1
+        name = $2
+        gsub(/\(.*/, "", name)
+        args = substr($0, index($0, "("))
+        print type "\t" name args ";"
+    }'
+    grep -P '^\s*static\s+\w+\s*\*\s*(\w+)\s*\(\s*\)' "$c_file" | awk '{
         type = $1
         name = $2
         gsub(/\(.*/, "", name)
@@ -63,10 +85,10 @@ extract_function_declarations() {
         echo "// Declarations from $(basename "$c_file")"
         declarations=$(extract_function_declarations "$c_file")
         echo "$declarations"
-        echo ""
     done
 
-    echo "#endif $(echo "$FINAL_H" | tr 'a-z.' 'A-Z_')"
+    echo ""
+    echo "#endif"
 } > "$FINAL_H_PATH"
 
 echo "Generated $FINAL_H_PATH with all function declarations"
@@ -80,6 +102,7 @@ for c_file in $C_FILES; do
         head -n 11 "$c_file" > "$tmp_file"
         echo "" >> "$tmp_file"
         echo "$h_include" >> "$tmp_file"
+        echo "" >> "$tmp_file"
         tail -n +13 "$c_file" >> "$tmp_file"
         mv "$tmp_file" "$c_file"
         echo "Added $h_include to $c_file"
