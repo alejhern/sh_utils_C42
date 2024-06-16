@@ -42,7 +42,7 @@ Este script elimina automáticamente el heading de tus archivos en C, ayudándot
         ```
      - Para la generación del archivo .h y añadir los includes a tus ficheros .c:
         ```bash
-		./generate_includers.sh <nombre_del_archivo_h_a_generar> <directorio_srcs>
+		./generate_includers.sh <directorio_archivo_h> <nombre_del_archivo_h_a_generar> <directorio_srcs>
         ```
      - Para descomentar tus ficheros .c:
         ```bash

@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Comprobar si se proporcionaron los argumentos necesarios
-if [ "$#" -ne 2 ]; then
-    echo "Uso: $0 <nombre_del_archivo_h> <ruta_archivos_c>"
+if [ "$#" -ne 3 ]; then
+    echo "Uso: $0 <directorio_archivo_h> <nombre_del_archivo_h> <ruta_archivos_c>"
     exit 1
 fi
 
-# Nombre del archivo .h final
-FINAL_H="$1"
-# Ruta de los archivos .c
-C_DIR="$2"
 # Directorio donde se guardará el archivo .h
-INCLUDERS_DIR="includers"
+INCLUDERS_DIR="$1"
+# Nombre del archivo .h final
+FINAL_H="$2"
+# Ruta de los archivos .c
+C_DIR="$3"
 
 # Comprobar si la ruta de los archivos .c existe y es un directorio
 if [ ! -d "$C_DIR" ]; then
