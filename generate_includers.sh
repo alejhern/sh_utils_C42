@@ -62,20 +62,6 @@ extract_function_declarations() {
         args = substr($0, index($0, "("))
         print type "\t" name args ";"
     }'
-    grep -P '^\s*static\s+\w+\s+\w+\(.*\)' "$c_file" | awk '{
-        type = $1
-        name = $2
-        gsub(/\(.*/, "", name)
-        args = substr($0, index($0, "("))
-        print type "\t" name args ";"
-    }'
-    grep -P '^\s*static\s+\w+\s*\*\s*(\w+)\s*\(\s*\)' "$c_file" | awk '{
-        type = $1
-        name = $2
-        gsub(/\(.*/, "", name)
-        args = substr($0, index($0, "("))
-        print type "\t" name args ";"
-    }'
 }
 
 # Crear el archivo .h final
