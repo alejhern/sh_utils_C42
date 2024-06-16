@@ -41,6 +41,9 @@ if [ -f "$FINAL_H_PATH" ]; then
     echo "Deleted existing file $FINAL_H_PATH"
 fi
 
+# Array de librerias
+LIBS="unistd.h stdlib.h fcntl.h stddef.h"
+
 # Función para extraer las declaraciones de funciones de un archivo .c
 
 extract_function_declarations() {
@@ -80,6 +83,18 @@ extract_function_declarations() {
     echo "#ifndef $(echo "$FINAL_H" | tr 'a-z.' 'A-Z_')"
     echo "# define $(echo "$FINAL_H" | tr 'a-z.' 'A-Z_')"
     echo ""
+} > "$FINAL_H_PATH"
+    
+for library in $LIBS; do
+    printf "Importar $library [y/n]: "
+    read resp
+    if [ "$resp" = "y" ]; then
+        echo "#import <$library>" >> "$FINAL_H_PATH"
+    fi
+done
+
+{
+    echo ""
 
     for c_file in $C_FILES; do
         echo "// Declarations from $(basename "$c_file")"
@@ -89,7 +104,7 @@ extract_function_declarations() {
 
     echo ""
     echo "#endif"
-} > "$FINAL_H_PATH"
+} >> "$FINAL_H_PATH"
 
 echo "Generated $FINAL_H_PATH with all function declarations"
 
