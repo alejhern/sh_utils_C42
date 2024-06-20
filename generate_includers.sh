@@ -48,7 +48,7 @@ LIBS="unistd.h stdlib.h fcntl.h stddef.h"
 
 extract_function_declarations() {
     local c_file="$1"
-    grep -P '^\s*\w+\s*\*\s*\w+\s*\([^)]*\)' $c_file | awk '{
+    grep -P '^\s*\w+\s*\*+\s*\w+\s*\([^)]*\)' $c_file | awk '{
         type = $1
         name = $2
         gsub(/\(.*/, "", name)
