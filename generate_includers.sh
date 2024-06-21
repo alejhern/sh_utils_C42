@@ -75,7 +75,7 @@ for library in $LIBS; do
     printf "Importar $library [y/n]: "
     read resp
     if [ "$resp" = "y" ]; then
-        echo "#import <$library>" >> "$FINAL_H_PATH"
+        echo "#include <$library>" >> "$FINAL_H_PATH"
     fi
 done
 
