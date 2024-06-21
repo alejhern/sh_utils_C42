@@ -8,8 +8,16 @@
 ### 1. Script para Quitar el Heading
 Este script elimina automáticamente el heading de tus archivos en C, ayudándote a mantener tu código limpio y estandarizado sin esfuerzo.
 
-### 2. Script para Cambiar el Nombre de las Variables
-¿Necesitas renombrar variables en tu código? Nuestro script automatiza este proceso, asegurando que puedas realizar cambios rápidamente sin errores manuales.
+### 2. Script para Buscar y Remplazar palabras
+¿Necesitas cambiar una palabras en tus ficheros? Nuestro script automatiza este proceso, asegurando que puedas realizar cambios rápidamente sin errores manuales.
+
+### 3. Script para generar .h
+¿Cansado de escribir el fichero .h? Nosotros lo hacemos por ti!
+> Nota : El NORMINETTE no te lo hace!
+
+### 4. Script para eliminar los comentarios de tus ficheros
+Comenta tu codigo dónde quieras que nuestro script te los eliminara de tu fichero y creara un fichero adicional donde se habran guardado dichos comentarios.
+> Nota: Solo funciona con los comentarios de una línea
 
 ## ¿Por Qué Usar Estas Herramientas?
 
@@ -48,7 +56,6 @@ Este script elimina automáticamente el heading de tus archivos en C, ayudándot
         ```bash
 		./uncoment_file.sh <ruta_archivo.c>
         ```
-		> Nota: Solo funciona con los comentarios de una línea
 
 ## Contribuye y Mejora
 
