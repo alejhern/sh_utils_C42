@@ -42,7 +42,7 @@ if [ -f "$FINAL_H_PATH" ]; then
 fi
 
 # Array de librerias
-LIBS="unistd.h stdlib.h fcntl.h stddef.h"
+LIBS="unistd.h stdlib.h fcntl.h stddef.h stdint.h"
 
 # Función para extraer las declaraciones de funciones de un archivo .c
 
@@ -81,7 +81,11 @@ done
 
 {
     echo ""
-
+    if [ -f ".s_list.h" ]; then
+        cat .s_list.h
+    fi
+    echo ""
+    echo ""
     for c_file in $C_FILES; do
         echo "// Declarations from $(basename "$c_file")"
         declarations=$(extract_function_declarations "$c_file")
